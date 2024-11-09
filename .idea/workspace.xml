@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="275667ec-3ca2-4e71-90bc-ad543b7ae666" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/MyGame Mushroomer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="275667ec-3ca2-4e71-90bc-ad543b7ae666" name="Changes" comment="Версия 1, есть механики">
+      <change afterPath="$PROJECT_DIR$/sounds/leaves.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/map1.json" beforeDir="false" afterPath="$PROJECT_DIR$/maps/map1.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +29,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/User/PycharmProjects/MyGame Mushroomer/sounds"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\PycharmProjects\MyGame Mushroomer\sounds" />
+      <recent name="C:\Users\User\PycharmProjects\MyGame Mushroomer\maps" />
+      <recent name="C:\Users\User\PycharmProjects\MyGame Mushroomer\images" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MyGame Mushroomer" />
@@ -76,6 +82,19 @@
       <option name="presentableId" value="Default" />
       <updated>1731116875754</updated>
     </task>
+    <task id="LOCAL-00001" summary="Версия 1, есть механики">
+      <option name="closed" value="true" />
+      <created>1731117690010</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731117690010</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Версия 1, есть механики" />
+    <option name="LAST_COMMIT_MESSAGE" value="Версия 1, есть механики" />
   </component>
 </project>

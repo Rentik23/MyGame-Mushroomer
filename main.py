@@ -99,6 +99,7 @@ class GameView(arcade.View):
         self.score = 0
         self.grib_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         self.shag_sound = arcade.load_sound("sounds/shagi-begom-po-lesu.wav")
+        self.leaves_sound = arcade.load_sound("sounds/leaves.wav")
         self.game_over = arcade.load_sound(":resources:sounds/gameover1.wav")
 
         arcade.set_background_color(arcade.csscolor.FOREST_GREEN)
@@ -127,8 +128,8 @@ class GameView(arcade.View):
         # Игрок
         image_source = "images/player.png"
         self.player_sprite = arcade.Sprite(image_source,CHARACTER_SCALING)
-        self.player_sprite.center_x = 64
-        self.player_sprite.center_y = 128
+        self.player_sprite.center_x = 60
+        self.player_sprite.center_y = 64
         self.scene.add_sprite("Player", self.player_sprite)
 
         # медведь
@@ -139,10 +140,7 @@ class GameView(arcade.View):
         self.scene.add_sprite("Bear", self.enemy_sprite)
 
         # Физический движок
-        self.physics_engine = arcade.PhysicsEngineSimple(
-            self.player_sprite,
-            walls=self.scene["Trees"]
-        )
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, walls=self.scene["Trees"])
 
     def on_draw(self):
 
@@ -173,16 +171,16 @@ class GameView(arcade.View):
 
         if key == arcade.key.UP or key == arcade.key.W:
             self.player_sprite.change_y = PLAYER_SPEED
-            arcade.play_sound(self.shag_sound)
+            arcade.play_sound(self.leaves_sound)
         elif key == arcade.key.DOWN or key == arcade.key.S:
             self.player_sprite.change_y = -PLAYER_SPEED
-            arcade.play_sound(self.shag_sound)
+            arcade.play_sound(self.leaves_sound)
         elif key == arcade.key.LEFT or key == arcade.key.A:
             self.player_sprite.change_x = -PLAYER_SPEED
-            arcade.play_sound(self.shag_sound)
+            arcade.play_sound(self.leaves_sound)
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.player_sprite.change_x = PLAYER_SPEED
-            arcade.play_sound(self.shag_sound)
+            arcade.play_sound(self.leaves_sound)
         if key == arcade.key.P:
             arcade.close_window()
 
