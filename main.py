@@ -1,50 +1,39 @@
 import arcade
 
-SCREEN_WIDTH = 1856
-SCREEN_HEIGHT = 928
 SCREEN_TITLE = "Mushroomer"
 
-CHARACTER_SCALING = 1
-MAP_SCALING = 1
-PLAYER_SPEED = 4
-ENEMY_SPEED = 0
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
 
+PLAYER_SPEED = 3
+ENEMY_SPEED = 0
 
 class StartGameView(arcade.View):
 
-    def on_show_view(self):
-        # Настраиваем окно
-        arcade.set_background_color(arcade.csscolor.DARK_SLATE_BLUE)
-        arcade.set_viewport(0, self.window.width, 0, self.window.height)
+    def __init__(self):
+        super().__init__()
+        self.texture = arcade.load_texture("images/start_game.jpg")
+        arcade.set_viewport(0, SCREEN_WIDTH - 1, 0, SCREEN_HEIGHT - 1)
 
     def on_draw(self):
-        # Рисуем окно
         self.clear()
-        arcade.draw_text("Start Game", self.window.width / 2, self.window.height / 2,
-                         arcade.color.WHITE, font_size=50, anchor_x="center")
-        arcade.draw_text("Click to start", self.window.width / 2, self.window.height / 2 - 100,
-                         arcade.color.WHITE, font_size=20, anchor_x="center")
+        self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT)
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
-        # Нажатие мыши
         game_view = GameView()
         game_view.setup()
         self.window.show_view(game_view)
 
 class WinGameView(arcade.View):
 
-    def on_show_view(self):
-        arcade.set_background_color(arcade.csscolor.BLUE)
-        arcade.set_viewport(0, self.window.width, 0, self.window.height)
+    def __init__(self):
+        super().__init__()
+        self.texture = arcade.load_texture("images/win_game.jpg")
+        arcade.set_viewport(0, SCREEN_WIDTH - 1, 0, SCREEN_HEIGHT - 1)
 
     def on_draw(self):
         self.clear()
-        arcade.draw_text("You Win!", self.window.width / 2, self.window.height / 2,
-                         arcade.color.WHITE, font_size=50, anchor_x="center")
-        arcade.draw_text("You found all the mushrooms", self.window.width / 2, self.window.height / 2 - 100,
-                         arcade.color.WHITE, font_size=20, anchor_x="center")
-        arcade.draw_text("Click to Do it again", self.window.width / 2, self.window.height / 2 - 200,
-                         arcade.color.WHITE, font_size=30, anchor_x="center")
+        self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT)
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         game_view = GameView()
@@ -52,19 +41,18 @@ class WinGameView(arcade.View):
         self.window.show_view(game_view)
 
 class EndGameView(arcade.View):
-
-    def on_show_view(self):
-        arcade.set_background_color(arcade.csscolor.FUCHSIA)
-        arcade.set_viewport(0, self.window.width, 0, self.window.height)
+    def __init__(self):
+        super().__init__()
+        self.texture = arcade.load_texture("images/end_game.jpg")
+        arcade.set_viewport(0, SCREEN_WIDTH - 1, 0, SCREEN_HEIGHT - 1)
 
     def on_draw(self):
         self.clear()
-        arcade.draw_text("End Game", self.window.width / 2, self.window.height / 2,
-                         arcade.color.WHITE, font_size=50, anchor_x="center")
+        self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT)
         arcade.draw_text("You didn't find all the mushrooms", self.window.width / 2, self.window.height / 2 - 100,
-                         arcade.color.WHITE, font_size=20, anchor_x="center")
-        arcade.draw_text("Click to Try again", self.window.width / 2, self.window.height / 2 - 200,
-                         arcade.color.WHITE, font_size=30, anchor_x="center")
+                         arcade.color.WHITE_SMOKE, font_size=28, anchor_x="center")
+        arcade.draw_text("Click to Try again", self.window.width / 2, self.window.height / 2 - 160,
+                         arcade.color.WHITE_SMOKE, font_size=16, anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         game_view = GameView()
@@ -74,12 +62,14 @@ class EndGameView(arcade.View):
 class GameOverView(arcade.View):
     def __init__(self):
         super().__init__()
-        self.texture = arcade.load_texture("images/pers1.png")
+        self.texture = arcade.load_texture("images/game_over.jpg")
         arcade.set_viewport(0, SCREEN_WIDTH - 1, 0, SCREEN_HEIGHT - 1)
 
     def on_draw(self):
         self.clear()
         self.texture.draw_sized(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT)
+        arcade.draw_text("Click to Restart", self.window.width / 2, self.window.height / 2 - 120,
+                         arcade.color.WHITE_SMOKE, font_size=16, anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         game_view = GameView()
@@ -95,7 +85,7 @@ class GameView(arcade.View):
         self.player_sprite = None
         self.enemy_sprite = None
         self.physics_engine = None
-        # self.camera = None
+        self.camera = None
         self.score = 0
         self.grib_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         self.shag_sound = arcade.load_sound("sounds/shagi-begom-po-lesu.wav")
@@ -107,34 +97,27 @@ class GameView(arcade.View):
     def setup(self):
 
         self.scene = arcade.Scene()
-        # self.camera = arcade.Camera(self.width, self.height)
+        self.camera = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.scene.add_sprite_list("Player")
         self.scene.add_sprite_list("Beer")
         self.score = 0
 
         # Карта
         map_name = "maps/map1.json"
-        layer_options = {
-            "Trees": {
-                "use_spatial_hash": True,
-            },
-            "Mushrooms": {
-                "use_spatial_hash": True,
-            },
-        }
-        self.tile_map = arcade.load_tilemap(map_name, MAP_SCALING, layer_options)
+        layer_options = {"Trees": {"use_spatial_hash": True,},
+                         "Mushrooms": {"use_spatial_hash": True,},
+                         }
+        self.tile_map = arcade.load_tilemap(map_name, 1, layer_options)
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
 
         # Игрок
-        image_source = "images/player.png"
-        self.player_sprite = arcade.Sprite(image_source,CHARACTER_SCALING)
+        self.player_sprite = arcade.Sprite("images/player.png", 1)
         self.player_sprite.center_x = 60
         self.player_sprite.center_y = 64
         self.scene.add_sprite("Player", self.player_sprite)
 
-        # медведь
-        image_source = "images/bear.png"
-        self.enemy_sprite = arcade.Sprite(image_source, CHARACTER_SCALING)
+        # Медведь
+        self.enemy_sprite = arcade.Sprite("images/bear.png", 1)
         self.enemy_sprite.center_x = 600
         self.enemy_sprite.center_y = 600
         self.scene.add_sprite("Bear", self.enemy_sprite)
@@ -146,26 +129,18 @@ class GameView(arcade.View):
 
         self.clear()
         self.scene.draw()
+        self.camera.use()
 
-        # self.camera.use()
-        '''def center_camera_to_player(self):
-            screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
-             screen_center_y = self.player_sprite.center_y - (
-                    self.camera.viewport_height / 2
-            )
+    def center_camera_to_player(self):
+        screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
+        screen_center_y = self.player_sprite.center_y - (self.camera.viewport_height / 2)
+        if screen_center_x < 0:
+            screen_center_x = 0
+        if screen_center_y < 0:
+            screen_center_y = 0
+        player_centered = screen_center_x, screen_center_y
 
-            # Don't let camera travel past 0
-            if screen_center_x < 0:
-                screen_center_x = 0
-            if screen_center_y < 0:
-               screen_center_y = 0
-            player_centered = screen_center_x, screen_center_y
-
-            self.camera.move_to(player_centered)'''
-
-        # Убрать!!!
-        score_text = f"Score: {self.score}"
-        arcade.draw_text(score_text,10,10,arcade.csscolor.WHITE,18,)
+        self.camera.move_to(player_centered)
 
     def on_key_press(self, key, modifiers):
 
@@ -198,7 +173,7 @@ class GameView(arcade.View):
     def on_update(self, delta_time):
 
         self.physics_engine.update()
-        # self.center_camera_to_player()
+        self.center_camera_to_player()
 
         grib_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene["Mushrooms"])
         for grib in grib_hit_list:
@@ -216,6 +191,7 @@ class GameView(arcade.View):
         elif self.enemy_sprite.center_x == 600 and self.enemy_sprite.center_y < 600:
             self.enemy_sprite.center_y += ENEMY_SPEED + 4
 
+        #Условия поражения
         death = arcade.check_for_collision_with_list(self.player_sprite, self.scene["Bear"])
         if death:
             arcade.play_sound(self.game_over)
@@ -224,13 +200,14 @@ class GameView(arcade.View):
 
         #Условия победы
         if self.player_sprite.center_x >= 1856:
-            arcade.play_sound(self.game_over)
             if self.score == 10:
                 view = WinGameView()
                 self.window.show_view(view)
+                arcade.play_sound(self.game_over)
             elif self.score < 10:
                 view = EndGameView()
                 self.window.show_view(view)
+                arcade.play_sound(self.game_over)
 
 def main():
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

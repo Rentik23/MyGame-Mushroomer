@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="275667ec-3ca2-4e71-90bc-ad543b7ae666" name="Changes" comment="+ камера">
+    <list default="true" id="275667ec-3ca2-4e71-90bc-ad543b7ae666" name="Changes" comment="Экраны, есть старт">
+      <change afterPath="$PROJECT_DIR$/images/end_game.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/game_over.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/start_game.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/win_game.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -97,12 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1731124098349</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Экраны, есть старт">
+      <option name="closed" value="true" />
+      <created>1731174251266</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731174251266</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Версия 1, есть механики" />
     <MESSAGE value="+ камера" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ камера" />
+    <MESSAGE value="Экраны, есть старт" />
+    <option name="LAST_COMMIT_MESSAGE" value="Экраны, есть старт" />
   </component>
 </project>
