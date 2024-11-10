@@ -87,19 +87,21 @@ class GameView(arcade.View):
         self.physics_engine = None
         self.camera = None
         self.score = 0
-        self.grib_sound = arcade.load_sound(":resources:sounds/coin1.wav")
-        self.shag_sound = arcade.load_sound("sounds/shagi-begom-po-lesu.wav")
+
         self.leaves_sound = arcade.load_sound("sounds/leaves.wav")
-        self.game_over = arcade.load_sound(":resources:sounds/gameover1.wav")
+        self.grib_sound = arcade.load_sound("sounds/es.mp3")
+        self.bear_sound = arcade.load_sound("sounds/hrum.mp3")
+        self.finish_sound = arcade.load_sound("sounds/finish.mp3")
+        self.win_sound = arcade.load_sound("sounds/win.mp3")
 
         arcade.set_background_color(arcade.csscolor.FOREST_GREEN)
 
     def setup(self):
 
         self.scene = arcade.Scene()
-        self.camera = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.scene.add_sprite_list("Player")
         self.scene.add_sprite_list("Beer")
+        self.camera = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.score = 0
 
         # Карта
@@ -112,8 +114,8 @@ class GameView(arcade.View):
 
         # Игрок
         self.player_sprite = arcade.Sprite("images/player.png", 1)
-        self.player_sprite.center_x = 60
-        self.player_sprite.center_y = 64
+        self.player_sprite.center_x = 50
+        self.player_sprite.center_y = 50
         self.scene.add_sprite("Player", self.player_sprite)
 
         # Медведь
@@ -132,6 +134,7 @@ class GameView(arcade.View):
         self.camera.use()
 
     def center_camera_to_player(self):
+
         screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
         screen_center_y = self.player_sprite.center_y - (self.camera.viewport_height / 2)
         if screen_center_x < 0:
@@ -175,13 +178,14 @@ class GameView(arcade.View):
         self.physics_engine.update()
         self.center_camera_to_player()
 
+        #собираем грибы
         grib_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene["Mushrooms"])
         for grib in grib_hit_list:
             grib.remove_from_sprite_lists()
             arcade.play_sound(self.grib_sound)
             self.score += 1
 
-       # траектория медведя
+       #траектория медведя
         if self.enemy_sprite.center_x < 1600 and self.enemy_sprite.center_y == 600:
              self.enemy_sprite.center_x += ENEMY_SPEED + 4
         elif self.enemy_sprite.center_x == 1600 and self.enemy_sprite.center_y > 300:
@@ -194,7 +198,7 @@ class GameView(arcade.View):
         #Условия поражения
         death = arcade.check_for_collision_with_list(self.player_sprite, self.scene["Bear"])
         if death:
-            arcade.play_sound(self.game_over)
+            arcade.play_sound(self.bear_sound)
             view = GameOverView()
             self.window.show_view(view)
 
@@ -203,11 +207,11 @@ class GameView(arcade.View):
             if self.score == 10:
                 view = WinGameView()
                 self.window.show_view(view)
-                arcade.play_sound(self.game_over)
+                arcade.play_sound(self.win_sound)
             elif self.score < 10:
                 view = EndGameView()
                 self.window.show_view(view)
-                arcade.play_sound(self.game_over)
+                arcade.play_sound(self.finish_sound)
 
 def main():
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="275667ec-3ca2-4e71-90bc-ad543b7ae666" name="Changes" comment="Экраны, есть старт">
-      <change afterPath="$PROJECT_DIR$/images/end_game.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/game_over.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/start_game.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/win_game.jpg" afterDir="false" />
+    <list default="true" id="275667ec-3ca2-4e71-90bc-ad543b7ae666" name="Changes" comment="Экраны все есть">
+      <change afterPath="$PROJECT_DIR$/sounds/es.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/finish.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/hrum.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/win.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/pers1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,18 +30,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/PycharmProjects/MyGame Mushroomer/images&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/User/PycharmProjects/MyGame Mushroomer/sounds"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\User\PycharmProjects\MyGame Mushroomer\images" />
       <recent name="C:\Users\User\PycharmProjects\MyGame Mushroomer\sounds" />
+      <recent name="C:\Users\User\PycharmProjects\MyGame Mushroomer\images" />
       <recent name="C:\Users\User\PycharmProjects\MyGame Mushroomer\maps" />
     </key>
   </component>
@@ -108,13 +109,22 @@
       <option name="project" value="LOCAL" />
       <updated>1731174251266</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Экраны все есть">
+      <option name="closed" value="true" />
+      <created>1731193730262</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731193730262</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Версия 1, есть механики" />
     <MESSAGE value="+ камера" />
     <MESSAGE value="Экраны, есть старт" />
-    <option name="LAST_COMMIT_MESSAGE" value="Экраны, есть старт" />
+    <MESSAGE value="Экраны все есть" />
+    <option name="LAST_COMMIT_MESSAGE" value="Экраны все есть" />
   </component>
 </project>
