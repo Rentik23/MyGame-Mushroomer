@@ -127,24 +127,6 @@ class GameView(arcade.View):
         # Физический движок
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, walls=self.scene["Trees"])
 
-    def on_draw(self):
-
-        self.clear()
-        self.scene.draw()
-        self.camera.use()
-
-    def center_camera_to_player(self):
-
-        screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
-        screen_center_y = self.player_sprite.center_y - (self.camera.viewport_height / 2)
-        if screen_center_x < 0:
-            screen_center_x = 0
-        if screen_center_y < 0:
-            screen_center_y = 0
-        player_centered = screen_center_x, screen_center_y
-
-        self.camera.move_to(player_centered)
-
     def on_key_press(self, key, modifiers):
 
         if key == arcade.key.UP or key == arcade.key.W:
@@ -172,6 +154,24 @@ class GameView(arcade.View):
             self.player_sprite.change_x = 0
         elif key == arcade.key.RIGHT or key == arcade.key.D:
             self.player_sprite.change_x = 0
+
+    def on_draw(self):
+
+        self.clear()
+        self.scene.draw()
+        self.camera.use()
+
+    def center_camera_to_player(self):
+
+        screen_center_x = self.player_sprite.center_x - (self.camera.viewport_width / 2)
+        screen_center_y = self.player_sprite.center_y - (self.camera.viewport_height / 2)
+        if screen_center_x < 0:
+            screen_center_x = 0
+        if screen_center_y < 0:
+            screen_center_y = 0
+        player_centered = screen_center_x, screen_center_y
+
+        self.camera.move_to(player_centered)
 
     def on_update(self, delta_time):
 
